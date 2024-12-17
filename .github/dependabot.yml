@@ -9,6 +9,9 @@ updates:
         dependency-type: "production"
       development-dependencies:
         dependency-type: "development"
+    ignore:
+      - dependency-name: "eslint"
+      - dependency-name: "@typescript-eslint/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
