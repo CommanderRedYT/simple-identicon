@@ -98,7 +98,6 @@ jobs:
           yarn install --immutable --check-cache
 
       - name: Run import checks
-        continue-on-error: true
         run: |
           yarn link
           cp -r gh-action-templates/import-check /tmp/import-check
