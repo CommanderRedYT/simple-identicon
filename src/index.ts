@@ -67,5 +67,3 @@ export const saveIdenticon = (inputValue: string, path: string, size = defaultSi
     const buffer = generateIdenticon(inputValue, size);
     fs.writeFileSync(path, buffer);
 };
-
-export default generateIdenticon;

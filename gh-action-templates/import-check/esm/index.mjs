@@ -1,9 +1,18 @@
-import module from 'simple-identicon';
+import identicon from 'simple-identicon';
 
-if (!module) {
-throw new Error('simple-identicon module not found');
+if (!identicon) {
+    throw new Error('simple-identicon module not found');
 }
 
-if (typeof module !== 'function') {
-throw new Error('simple-identicon module is not a function');
+if (typeof identicon !== 'object') {
+    throw new Error('simple-identicon module is not a object');
+}
+
+// required attributes
+const requiredAttributes = ['generateIdenticon', 'saveIdenticon', 'generateIdenticonDataUrl'];
+
+for (const attribute of requiredAttributes) {
+    if (!identicon[attribute]) {
+        throw new Error(`simple-identicon module is missing required attribute: ${attribute}`);
+    }
 }
