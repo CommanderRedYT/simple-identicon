@@ -46,6 +46,6 @@
         "node": ">=18 <=22"
     },
     "dependencies": {
-        "canvas": "^2.11.2"
+        "canvas": "^3.0.0"
     }
 }
