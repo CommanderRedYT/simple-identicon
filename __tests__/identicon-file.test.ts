@@ -1,5 +1,5 @@
 import fs from 'fs';
-import imageSize from 'image-size';
+import { imageSizeFromFile } from 'image-size/fromFile';
 import { saveIdenticon, generateIdenticonDataUrl, defaultSize } from '../src';
 
 const massCount = 1000; // number of identicons to generate for mass test
@@ -13,14 +13,14 @@ describe('identicon-file', () => {
         });
     });
 
-    it('should create an identicon file', () => {
+    it('should create an identicon file', async () => {
         const hash = 'test';
         const path = 'test.png';
         saveIdenticon(hash, path);
 
         const exists = fs.existsSync(path);
 
-        const dimensions = imageSize(path);
+        const dimensions = await imageSizeFromFile(path);
 
         expect(dimensions.width).toBe(defaultSize);
         expect(dimensions.height).toBe(defaultSize);
@@ -32,7 +32,7 @@ describe('identicon-file', () => {
         expect(data).toMatchSnapshot();
     });
 
-    it('should create an identicon file with a custom size', () => {
+    it('should create an identicon file with a custom size', async () => {
         const hash = 'test2';
         const path = 'test2.png';
         const size = 256;
@@ -40,7 +40,7 @@ describe('identicon-file', () => {
 
         const exists = fs.existsSync(path);
 
-        const dimensions = imageSize(path);
+        const dimensions = await imageSizeFromFile(path);
 
         expect(dimensions.width).toBe(size);
         expect(dimensions.height).toBe(size);
