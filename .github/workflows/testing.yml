@@ -15,6 +15,10 @@ jobs:
       contents: write
       checks: write
       pull-requests: write
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 18, 20, 22, 24 ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +33,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '${{ matrix.node-version }}'
           cache: 'yarn'
 
       - name: Install node modules
@@ -45,6 +49,10 @@ jobs:
   lint:
     name: Run Linter
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 18, 20, 22, 24 ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,7 +67,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '${{ matrix.node-version }}'
           cache: 'yarn'
 
       - name: Install node modules
@@ -73,6 +81,10 @@ jobs:
   import-checks:
     name: Run Import Checks
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 18, 20, 22, 24 ]
     permissions:
       contents: write
       checks: write
@@ -90,7 +102,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '${{ matrix.node-version }}'
           cache: 'yarn'
 
       - name: Install node modules
