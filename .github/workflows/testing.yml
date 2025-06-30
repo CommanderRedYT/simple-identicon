@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: Run Tests
+    name: Run Tests with Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -47,7 +47,7 @@ jobs:
         with:
           test-command: "yarn test"
   lint:
-    name: Run Linter
+    name: Run Linter with Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -79,7 +79,7 @@ jobs:
           yarn lint --max-warnings=0
 
   import-checks:
-    name: Run Import Checks
+    name: Run Import Checks with Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
